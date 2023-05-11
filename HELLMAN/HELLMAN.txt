@@ -1,0 +1,42 @@
+#include<stdio.h>
+
+
+long long int power (int a, int b, int mod){
+    long long int t;
+    if (b==1)
+        return a;
+    t=power(a, b/2, mod);
+    if(b%2 == 0)
+        return (t*t)%mod;
+    else
+        return(((t*t)%mod)*a)%mod;
+}
+
+int main()
+{
+    int n, g, x, y, a, b, senderkey, receiverkey;
+    printf("Enter thr value of n and g");
+    scanf("%d %d", &n, &g);
+    printf("Enter value for sender:");
+    scanf("%d", &x);
+    printf("Enter the value for receiver:");
+    scanf("%d", &y);
+    // power calculation
+    a = power(g, x, n);
+    printf("a = %d" , a);
+    b= power(g, y, n);
+    printf("\nb = %d", b);
+    senderkey = power(b, x, n);
+    receiverkey = power(a, y, n);
+    printf("\nsenderkey = %d" , senderkey);
+    printf("\nreceiverkey = %d" , receiverkey);
+    if(senderkey == receiverkey)
+        printf("\nsuccessful");
+    else
+        printf("\nError");
+    return 0;
+   
+    return 0;
+}
+
+@Farhan Labib
